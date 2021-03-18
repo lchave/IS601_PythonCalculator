@@ -1,8 +1,12 @@
 def addition(a,b):
+    a = float(a)
+    b = float(b)
     return a + b
 
 def subtraction(a,b):
-    return a - b
+    a = float(a)
+    b = float(b)
+    return b - a
 
 class Calculator:
     result = 0

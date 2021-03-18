@@ -1,21 +1,28 @@
 import unittest
 from Calculator import  Calculator
+from CSVReader import CsvReader
+from pprint import pprint
 
 class MyTestCase(unittest.TestCase):
+    def setUp(self) -> None:
+        self.calculator = Calculator()
 
     def test_instantiate_calculator(self):
-        calculator = Calculator()
-        self.assertIsInstance(calculator, Calculator)
+        self.assertIsInstance(self.calculator, Calculator)
 
     def test_addition_method_calculator(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.add(1,2),3)
-        self.assertEqual(calculator.result,3)
+       test_data = CsvReader('/src/Unit Test Addition.csv').data
+       for row in test_data:
+           self.assertEqual(self.calculator.add(row['Value 1'],row['Value 2']),float(row['Result']))
+           self.assertEqual(self.calculator.result,float(row['Result']))
+       test_data.clear()
 
     def test_subtraction_method_calculator(self):
-        calculator = Calculator()
-        self.assertEqual(calculator.subtract(2,1),1)
-        self.assertEqual(calculator.result,1)
+        test_data = CsvReader('/src/Unit Test Subtraction.csv').data
+        for row in test_data:
+            self.assertEqual(self.calculator.subtract(row['Value 1'],row['Value 2']),float(row['Result']))
+            self.assertEqual(self.calculator.result,float(row['Result']))
+        test_data.clear()
 
 if __name__ == '__main__':
     unittest.main()
