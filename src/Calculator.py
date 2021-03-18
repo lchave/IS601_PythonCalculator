@@ -1,17 +1,17 @@
 def addition(a,b):
-    a = float(a)
-    b = float(b)
-    return a + b
+    return int(a) + int(b)
 
 def subtraction(a,b):
-    a = float(a)
-    b = float(b)
-    return b - a
+    return int(b) - int(a)
 
 def multiplication(a,b):
-    a = float(a)
-    b = float(b)
-    return b * a
+    return float(a) * float(b)
+
+def division(a,b):
+    if float(a) is not float(0):
+        return round(float(b) / float(a),9)
+    else:
+        return 'Divisor can not be zero.'
 
 class Calculator:
     result = 0
@@ -29,4 +29,8 @@ class Calculator:
 
     def multiply(self,a,b):
         self.result = multiplication(a,b)
+        return self.result
+
+    def divide(self,a,b):
+        self.result = division(a,b)
         return self.result
